@@ -1,16 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <windows.h>
+#include <string.h>
 #include "input.h"
 #include "game.h"
 
 
-int main(void){
+int main(int argc, char** argv){
   // Initialization phase -----------------------
   srand(time(NULL));
-  struct player_t player = {{{5,10}},1,0,'*'};
-  struct berry_t berry = {4,17,'@'};
+  char player_char = '*', berry_char = '@', wall_char = '#';
+  if(argc > 2){
+    for(int i = 1; i < argc; i++){
+      if(!strcmp(argv[i],"-p")){
+        player_char = argv[++i][0];
+      }
+      if(!strcmp(argv[i],"-b")){
+        berry_char = argv[++i][0];
+      }
+      if(!strcmp(argv[i],"-w")){
+        wall_char = argv[++i][0];
+      }
+    }
+  } 
+  struct player_t player = {{{5,10}},1,0,player_char};
+  struct berry_t berry = {4,17,berry_char};
   enable_nbi();
   clear();
   // Game loop ----------------------------------
@@ -47,7 +61,7 @@ int main(void){
     update_player(&player,&berry);
     // Draw phase -------------------------------
     move_cursor(1,1);
-    draw_arena(10,20);
+    draw_arena(10,20,wall_char);
     draw_berry(&berry);
     draw_player(&player);
     move_cursor(1,1);

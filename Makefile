@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -Wall -Wextra -O3
-TGT := snk
+TGT := tsnk
 OBJ := main.o game.o input.o
 
 $(TGT): $(OBJ)

@@ -52,7 +52,7 @@ void update_player(struct player_t* player,struct berry_t *berry){
       break;
   }     
 }
-void draw_arena(int height,int width){
+void draw_arena(int height,int width,char w_char){
   char blank_line[width+1];
   for(int i = 0; i < width; i++){
     blank_line[i] = ' ';
@@ -60,16 +60,16 @@ void draw_arena(int height,int width){
   blank_line[width] = '\0';
 
   for(int i = 0; i < width+2; i++){
-    putc('#',stdout);
+    putc(w_char,stdout);
   }
   putc('\n',stdout);
 
   for(int i = 0; i < height; i++){
-    printf("#%s#\n",blank_line);
+    printf("%c%s%c\n",w_char,blank_line,w_char);
   }
 
   for(int i = 0; i < width+2; i++){
-    putc('#',stdout);
+    putc(w_char,stdout);
   }
 
 }
