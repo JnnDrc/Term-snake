@@ -3,9 +3,12 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include <conio.h>
 #define sleep(ms) Sleep(ms)
 #else
 #include <unistd.h>
+#include <termios.h>
+#include <fcntl.h>
 #define sleep(ms) usleep(ms*1000)
 #endif
 

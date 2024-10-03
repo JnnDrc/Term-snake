@@ -1,10 +1,5 @@
 
-#ifdef _WIN32
-#include <conio.h>
-#else
-#include <termios.h>
-#include <fcntl.h>
-#endif
+#include "input.h"
 
 void enable_nbi(){
   #ifndef _WIN32
