@@ -52,7 +52,7 @@ void update_player(struct player_t* player,struct berry_t *berry){
       break;
   }     
 }
-void draw_arena(int height,int width,char w_char){
+void draw_arena(int height,int width,struct player_t *player, char w_char){
   char blank_line[width+1];
   for(int i = 0; i < width; i++){
     blank_line[i] = ' ';
@@ -71,6 +71,7 @@ void draw_arena(int height,int width,char w_char){
   for(int i = 0; i < width+2; i++){
     putc(w_char,stdout);
   }
+  printf("\nscore: %d",player->segment_count - 1);
 
 }
 

@@ -11,7 +11,7 @@ int main(int argc, char** argv){
   srand(time(NULL));
   char player_char = '*', berry_char = '@', wall_char = '#';
   int sleep_time = 200;
-  if(argc > 2){
+  if(argc > 1){
     for(int i = 1; i < argc; i++){
       if(!strcmp(argv[i],"-h")){
         printf("Custom arguments: \n");
@@ -19,18 +19,21 @@ int main(int argc, char** argv){
         printf("\t -b: change berry character\n");
         printf("\t -w: change walls character\n");
         printf("\t -s: change game speed\n");
+        return 0;
       }
-      if(!strcmp(argv[i],"-p")){
-        player_char = argv[++i][0];
-      }
-      if(!strcmp(argv[i],"-b")){
-        berry_char = argv[++i][0];
-      }
-      if(!strcmp(argv[i],"-w")){
-        wall_char = argv[++i][0];
-      }
-      if(!strcmp(argv[i],"-s")){
-        sleep_time = atoi(argv[++i]);
+      if (argc > 2){
+        if(!strcmp(argv[i],"-p")){
+          player_char = argv[++i][0];
+        }
+        if(!strcmp(argv[i],"-b")){
+          berry_char = argv[++i][0];
+        }
+        if(!strcmp(argv[i],"-w")){
+          wall_char = argv[++i][0];
+        }
+        if(!strcmp(argv[i],"-s")){
+          sleep_time = atoi(argv[++i]);
+        }
       }
     }
   } 
@@ -44,13 +47,13 @@ int main(int argc, char** argv){
     if(player.segment_count == 10 * 20){
       move_cursor(1,1);
       clear();
-      printf("You win\n score: %d",player.segment_count);
+      printf("You win\n score: %d",player.segment_count - 1);
       break;
     }
     if(check_collisions(&player)){
       move_cursor(1,1);
       clear();
-      printf("You loose\n score: %d",player.segment_count);
+      printf("You loose\n score: %d",player.segment_count - 1);
       break;
     }
     switch(get_key()){
@@ -73,7 +76,7 @@ int main(int argc, char** argv){
     // Draw phase -------------------------------
     move_cursor(1,1);
     fflush(stdout);
-    draw_arena(10,20,wall_char);
+    draw_arena(10,20,&player,wall_char);
     fflush(stdout);
     draw_berry(&berry);
     fflush(stdout);
