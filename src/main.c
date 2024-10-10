@@ -58,16 +58,24 @@ int main(int argc, char** argv){
     }
     switch(get_key()){
       case 'w':
-          player.direction = 1;
+          if (player.direction != 4 || player.segment_count == 1 ){
+            player.direction = 1;
+          }
         break;
       case 'a':
-          player.direction = 2;
+          if(player.direction != 8 || player.segment_count == 1){
+            player.direction = 2;
+          }
         break;
       case 's':
-          player.direction = 4;
+          if (player.direction != 1 || player.segment_count ==  1 ){
+            player.direction = 4;
+          }
         break;
       case 'd':
-          player.direction = 8;
+          if (player.direction != 2 || player.segment_count == 1 ){
+            player.direction = 8;
+          }
         break;
       default:
         break;
