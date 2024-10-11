@@ -16,10 +16,10 @@ void update_player(struct player_t* player,struct berry_t *berry){
     
     int new_berry_row, new_berry_column;
     while(1){
-      new_berry_row = (rand() % 12) + 1;
-      new_berry_column = (rand() % 22) + 1;
+      new_berry_row = (rand() % 11) + 2;
+      new_berry_column = (rand() % 21) + 2;
       for(int i = 0; i < player->segment_count; i++){
-        if(new_berry_row == player->segments[i].row || new_berry_column == player->segments[i].column){
+        if(new_berry_row == player->segments[i].row && new_berry_column == player->segments[i].column){
           continue;
         }
       }

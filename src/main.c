@@ -5,6 +5,26 @@
 #include "input.h"
 #include "game.h"
 
+#define HELP_TEXT "-----------Term-snake----------\n"\
+                  "  The Snake game for terminal  \n"\
+                  "-------------------------------\n"\
+                  "How to play:                   \n"\
+                  "\t Use WASD to move the snake  \n"\
+                  "\t[default=*].                 \n"\
+                  "\t Eat berrys[default=@] to    \n"\
+                  "\tgrow and earn score.         \n"\
+                  "\t Avoid walls[default=#] and  \n"\
+                  "\tyourself[default*].          \n"\
+                  "\t Fill the entirety of the    \n"\
+                  "\tarena to win                 \n"\
+                  "Custom arguments:              \n"\
+                  "custom settings:               \n"\
+                  "\t -s: change game speed       \n"\
+                  "customization:                 \n"\
+                  "\t -p: change player charecter \n"\
+                  "\t -b: change berry character  \n"\
+                  "\t -w: change walls character  \n"\
+                  "by-JnnDrc------------------v1.3\n"\
 
 int main(int argc, char** argv){
   // Initialization phase -----------------------
@@ -14,11 +34,7 @@ int main(int argc, char** argv){
   if(argc > 1){
     for(int i = 1; i < argc; i++){
       if(!strcmp(argv[i],"-h")){
-        printf("Custom arguments: \n");
-        printf("\t -p: change player character\n");
-        printf("\t -b: change berry character\n");
-        printf("\t -w: change walls character\n");
-        printf("\t -s: change game speed\n");
+        printf(HELP_TEXT);
         return 0;
       }
       if (argc > 2){
@@ -48,13 +64,13 @@ int main(int argc, char** argv){
       move_cursor(1,1);
       clear();
       printf("You win\n score: %d",player.segment_count - 1);
-      break;
+      goto exit;
     }
     if(check_collisions(&player)){
       move_cursor(1,1);
       clear();
       printf("You loose\n score: %d",player.segment_count - 1);
-      break;
+      goto exit;
     }
     switch(get_key()){
       case 'w':
@@ -77,6 +93,9 @@ int main(int argc, char** argv){
             player.direction = 8;
           }
         break;
+      case 'q':
+        clear();
+        goto exit;     
       default:
         break;
     }
@@ -95,7 +114,7 @@ int main(int argc, char** argv){
 
     sleep(sleep_time);// sleep for smooth update
   } 
-  
+exit:
   disable_nbi();
   return 0;
 }
