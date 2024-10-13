@@ -9,21 +9,24 @@ void clear(){
   puts("\033[2J");
 }
 
-void update_player(struct player_t* player,struct berry_t *berry){
+void update_player(struct player_t *player,struct berry_t *berry,int arena_height,int arena_width){
   if(player->segments[0].row == berry->row && player->segments[0].column == berry->column){
     player->segments[player->segment_count] = player->segments[0];
     player->segment_count++;
-    
+    char overlap = 0;
     int new_berry_row, new_berry_column;
     while(1){
-      new_berry_row = (rand() % 11) + 2;
-      new_berry_column = (rand() % 21) + 2;
+      new_berry_row = (rand() % arena_height) + 2;//2 arena_height+1
+      new_berry_column = (rand() % arena_width) + 2;//2 arena_width+1
       for(int i = 0; i < player->segment_count; i++){
         if(new_berry_row == player->segments[i].row && new_berry_column == player->segments[i].column){
-          continue;
+            overlap = 1;
+            break;
         }
       }
-      break;
+      if(!overlap){
+          break;
+      }
     }
     berry->row = new_berry_row;
     berry->column = new_berry_column;

@@ -31,6 +31,8 @@ int main(int argc, char** argv){
   srand(time(NULL));
   char player_char = '*', berry_char = '@', wall_char = '#';
   int sleep_time = 200;
+  int arena_height = 10, arena_width = arena_height * 2;
+
   if(argc > 1){
     for(int i = 1; i < argc; i++){
       if(!strcmp(argv[i],"-h")){
@@ -53,14 +55,14 @@ int main(int argc, char** argv){
       }
     }
   } 
-  struct player_t player = {{{5,10}},1,0,player_char};
+  struct player_t player = {{{arena_height/2,arena_width/2}},1,0,player_char};
   struct berry_t berry = {4,17,berry_char};
   clear();
   enable_nbi();
   // Game loop ----------------------------------
   for(;;){
     // Update phase -----------------------------
-    if(player.segment_count == 10 * 20){
+    if(player.segment_count == arena_height * arena_width){
       move_cursor(1,1);
       clear();
       printf("You win\n score: %d",player.segment_count - 1);
@@ -99,11 +101,11 @@ int main(int argc, char** argv){
       default:
         break;
     }
-    update_player(&player,&berry);
+    update_player(&player,&berry,arena_height,arena_width);
     // Draw phase -------------------------------
     move_cursor(1,1);
     fflush(stdout);
-    draw_arena(10,20,&player,wall_char);
+    draw_arena(arena_height,arena_width,&player,wall_char);
     fflush(stdout);
     draw_berry(&berry);
     fflush(stdout);
