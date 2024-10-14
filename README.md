@@ -13,7 +13,7 @@ move with WASD.
 eat berrys [default @] to grow.  
 dont colide with walls [default #] and yourself [default \*].  
 
-## Keys
+### Keys
 
 - wasd: move snake
 - q: quit game
