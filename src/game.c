@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 void move_cursor(int row,int column){
   printf("\033[%d;%dH",row,column);
 }
@@ -55,7 +56,7 @@ void update_player(struct player_t *player,struct berry_t *berry,int arena_heigh
       break;
   }     
 }
-void draw_arena(int height,int width,struct player_t *player, char w_char){
+void draw_arena(int height,int width,struct player_t *player, char w_char,int flags){
   char blank_line[width+1];
   for(int i = 0; i < width; i++){
     blank_line[i] = ' ';
@@ -75,6 +76,14 @@ void draw_arena(int height,int width,struct player_t *player, char w_char){
     putc(w_char,stdout);
   }
   printf("\nscore: %d",player->segment_count - 1);
+  if(FLAG(flags, PAUSED)){
+      printf("\tPAUSED");
+  }else{
+      printf("\t      ");
+  }
+  if(FLAG(flags, DEBUG)){
+      printf("\nflags: %x", flags);
+  }
 
 }
 

@@ -32,12 +32,16 @@ int main(int argc, char** argv){
   char player_char = '*', berry_char = '@', wall_char = '#';
   int sleep_time = 200;
   int arena_height = 10, arena_width = arena_height * 2;
-
+  int flags = 0;
+    
   if(argc > 1){
     for(int i = 1; i < argc; i++){
       if(!strcmp(argv[i],"-h")){
         printf(HELP_TEXT);
         return 0;
+      }
+      if(!strcmp(argv[i],"-d")){
+          flags |= DEBUG;
       }
       if (argc > 2){
         if(!strcmp(argv[i],"-p")){
@@ -95,17 +99,22 @@ int main(int argc, char** argv){
             player.direction = 8;
           }
         break;
+      case ' ':
+        flags ^= PAUSED;
+        break;
       case 'q':
         clear();
         goto exit;     
       default:
         break;
     }
-    update_player(&player,&berry,arena_height,arena_width);
+    if (!FLAG(flags,PAUSED)){
+        update_player(&player,&berry,arena_height,arena_width);
+    }
     // Draw phase -------------------------------
     move_cursor(1,1);
     fflush(stdout);
-    draw_arena(arena_height,arena_width,&player,wall_char);
+    draw_arena(arena_height,arena_width,&player,wall_char,flags);
     fflush(stdout);
     draw_berry(&berry);
     fflush(stdout);
