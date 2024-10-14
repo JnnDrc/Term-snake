@@ -56,7 +56,7 @@ void update_player(struct player_t *player,struct berry_t *berry,int arena_heigh
             break;
   }     
 }
-void draw_arena(int height,int width,struct player_t *player, char w_char,int flags){
+void draw_arena(int height,int width,struct player_t *player,struct berry_t *berry, char w_char,int flags){
   char blank_line[width+1];
   for(int i = 0; i < width; i++){
     blank_line[i] = ' ';
@@ -82,7 +82,8 @@ void draw_arena(int height,int width,struct player_t *player, char w_char,int fl
       printf("\t      ");
   }
   if(FLAG(flags, DEBUG)){
-      printf("\nflags: %x", flags);
+      printf("\nflags: %d direction: %d    ", flags,player->direction);
+      printf("\nplayer: %d,%d berry: %d,%d   ",player->segments[0].row,player->segments[0].column,berry->row,berry->column);
   }
 
 }

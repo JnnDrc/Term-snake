@@ -24,6 +24,8 @@
                   "\t -p: change player charecter \n"\
                   "\t -b: change berry character  \n"\
                   "\t -w: change walls character  \n"\
+                  "debug:                         \n"\
+                  "\t -d: play in debug mode      \n"\
                   "by-JnnDrc------------------v1.3\n"\
 
 int main(int argc, char** argv){
@@ -114,7 +116,7 @@ int main(int argc, char** argv){
     // Draw phase -------------------------------
     move_cursor(1,1);
     fflush(stdout);
-    draw_arena(arena_height,arena_width,&player,wall_char,flags);
+    draw_arena(arena_height,arena_width,&player,&berry,wall_char,flags);
     fflush(stdout);
     draw_berry(&berry);
     fflush(stdout);
