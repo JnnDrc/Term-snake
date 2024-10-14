@@ -1,6 +1,6 @@
 # Term-snake
 
-just a terminal snake game made in C
+Just a terminal snake game made in C
 
 ## Download
 
@@ -9,7 +9,12 @@ just a terminal snake game made in C
 
 ## How to play
 
-move with WASD
-eat berrys [default @] to grow
-dont colide with walls [default #]
-and yourself [default \*]
+move with WASD.  
+eat berrys [default @] to grow.  
+dont colide with walls [default #] and yourself [default \*].  
+
+## Keys
+
+- wasd: move snake
+- q: quit game
+- SPACE: pause
