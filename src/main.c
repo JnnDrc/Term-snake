@@ -72,7 +72,7 @@ int main(int argc, char** argv){
       printf("You win\n score: %d",player.segment_count - 1);
       goto exit;
     }
-    if(check_collisions(&player)){
+    if(check_collisions(&player,arena_height,arena_width)){
       move_cursor(1,1);
       clear();
       printf("You loose\n score: %d",player.segment_count - 1);
