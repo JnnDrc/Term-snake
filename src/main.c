@@ -58,6 +58,10 @@ int main(int argc, char** argv){
         if(!strcmp(argv[i],"-s")){
           sleep_time = atoi(argv[++i]);
         }
+        if(!strcmp(argv[i],"-a")){
+          arena_height = atoi(argv[++i]);
+          arena_width = arena_height * 2;
+        }
       }
     }
   } 

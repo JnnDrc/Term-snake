@@ -84,6 +84,7 @@ void draw_arena(int height,int width,struct player_t *player,struct berry_t *ber
   if(FLAG(flags, DEBUG)){
       printf("\nflags: %d direction: %d    ", flags,player->direction);
       printf("\nplayer: %d,%d berry: %d,%d   ",player->segments[0].row,player->segments[0].column,berry->row,berry->column);
+      printf("\ncolision: %d",check_collisions(player,height,width));
   }
 
 }
