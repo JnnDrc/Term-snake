@@ -24,9 +24,11 @@
                   "\t -p: change player charecter \n"\
                   "\t -b: change berry character  \n"\
                   "\t -w: change walls character  \n"\
+                  "\t -a: change the size of the  \n"\
+                  "\t arena                       \n"\
                   "debug:                         \n"\
                   "\t -d: play in debug mode      \n"\
-                  "by-JnnDrc------------------v1.3\n"\
+                  "by-JnnDrc------------------v1.4\n"\
 
 int main(int argc, char** argv){
   // Initialization phase -----------------------
